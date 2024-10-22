@@ -2,6 +2,8 @@
 
 Welcome to the **Todo Application**! This is a simple and beautiful Todo app built with HTML, CSS, and JavaScript. It allows you to add, edit, and delete tasks, with data persistence using the browser's local storage.
 
+**[Todo Live Preview](https://hashimthepassionate.github.io/todo-application/)**
+
 ## 📚 Table of Contents
 
 - [📝 Todo Application](#-todo-application)
