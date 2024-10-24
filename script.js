@@ -1,45 +1,56 @@
-let getById = (id) => document.getElementById(id);
-let addTodoBtn = getById('add-todo-btn');
-let todoPopup = getById('todo-popup');
-let saveTodoBtn = getById('save-todo-btn');
-let closePopupBtn = getById('close-popup-btn');
-let todoInput = getById('todo-input');
-let todoList = getById('todo-list');
+let id = (id) => document.getElementById(id);
+let btn = id('add-todo-btn')
+
+let addtodobtn = id('add-todo-btn')
+let todopopup = id('todo-popup');
+let savetodo = id('save-todo-btn');
+let closepopupbtn = id('close-popup-btn');
+let todoinput = id('todo-input');
+let todolist = id('todo-list');
+
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
-let editIndex = null;
+let editindex = null;
 
-// Show popup
-addTodoBtn.addEventListener('click', () => {
-    todoPopup.style.display = 'flex';
-    todoInput.value = '';
-    editIndex = null;
+addtodobtn.addEventListener('click',()=>{
+    todopopup.style.display = 'flex';
+    todoinput.value = '';
+    editindex = null;
 });
 
-// Close popup
-closePopupBtn.addEventListener('click', () => {
-    todoPopup.style.display = 'none';
-});
-
-// Save Todo
-saveTodoBtn.addEventListener('click', () => {
-    let todoText = todoInput.value.trim();
-    if (todoText) {
-        if (editIndex !== null) {
-            todos[editIndex] = todoText;
-        } else {
-            todos.push(todoText);
-        }
-        localStorage.setItem('todos', JSON.stringify(todos));
-        renderTodos();
-        todoPopup.style.display = 'none';
+closepopupbtn.addEventListener(
+    'click', () => {
+        todopopup.style.display = 'none';
     }
-});
+);
+
+savetodo.addEventListener(
+    'click', 
+    () => {
+        let todotext = todoinput.value.trim();
+        if (todotext){
+            if (editindex !== null){
+                todos[editindex] = todotext
+            }
+            else{
+                todos.push(todotext)
+            }
+        localStorage.setItem('todos',
+            JSON.stringify(todos)
+        )
+        renderTodos();
+        todopopup.style.display = 'none';
+        }
+        else{
+            alert('Please enter a todo')
+        }
+    }
+);
 
 // Render Todos
 function renderTodos() {
-    todoList.innerHTML = '';
+    todolist.innerHTML = ''; // Clear the existing list
     todos.forEach((todo, index) => {
-        let li = document.createElement('li');
+        let li = document.createElement('li'); // Create a new list item
         li.innerHTML = `
             <span>${todo}</span>
             <div>
@@ -47,23 +58,22 @@ function renderTodos() {
                 <button class="delete-btn" onclick="deleteTodo(${index})">Delete</button>
             </div>
         `;
-        todoList.appendChild(li);
+        todolist.appendChild(li); // Add the list item to the todo list
     });
 }
 
+window.editTodo = function (i){
+    todoinput.value = todos[i];
+    editindex = i;
+    todopopup.style.display = 'flex';
+}
 
-// Edit Todo
-window.editTodo = function (index) {
-    todoInput.value = todos[index];
-    editIndex = index;
-    todoPopup.style.display = 'flex';
-};
-
-// Delete Todo
 window.deleteTodo = function (index) {
-    todos.splice(index, 1);
-    localStorage.setItem('todos', JSON.stringify(todos));
-    renderTodos();
+    if (confirm('Are you sure you want to delete this todo?')) {
+        todos.splice(index, 1);
+        localStorage.setItem('todos', JSON.stringify(todos));
+        renderTodos();
+    }
 };
 
 // Initial Load
