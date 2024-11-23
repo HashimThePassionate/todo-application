@@ -15,16 +15,18 @@
 
 <body>
     <div class="container">
+        <!-- Add Todo -->
         <header>
             <h1>Todo Application</h1>
             <button id="add-todo-btn"><span class="material-symbols-outlined">
                 add_circle
-                </span> Add Todo</button>
+                </span class="spantodo"> Add Todo</button>
         </header>
         <main>
             <ul id="todo-list"></ul>
         </main>
 
+        <!-- Edit Popup -->
         <div class="popup" id="todo-popup">
             <div class="popup-content">
                 <h2 id="popup-title">Add Todo</h2>
@@ -34,7 +36,27 @@
             </div>
         </div>
 
+        <!-- Alert Todo -->
+        <div class="popup" id="alert-popup">
+            <div class="popup-content">
+                <h2>Alert</h2>
+                <p>Please enter a todo</p>
+                <button id="close-alert-btn">OK</button>
+            </div>
+        </div>
+
+        <!--Delete Confirmation Popup -->
+        <div class="popup" id="delete-popup">
+            <div class="popup-content">
+                <h2>Are you sure, you want to delete todo?</h2>
+                <button id="confirm-delete-btn">Yes</button>
+                <button id="cancel-delete-btn">No</button>
+            </div>
+        </div>
+
     </div>
+
+
     <script src="script.js"></script>
 </body>
 
