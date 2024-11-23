@@ -234,3 +234,47 @@ button:hover {
     color: #fff;
 }
 
+/* Responsive Styles */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    #add-todo-btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    #todo-list li {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #todo-list li button {
+        flex: 1 1 100%;
+        margin-left: 0;
+    }
+
+    #todo-list li .todo-text,
+    #todo-list li span {
+        flex: 1 1 100%;
+        margin-bottom: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+     .edit-btn {
+      margin-bottom: 10px;
+  }
+    .popup-content {
+        padding: 20px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .popup-content button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
