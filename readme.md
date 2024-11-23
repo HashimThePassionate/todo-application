@@ -1,8 +1,8 @@
 # 📝 Todo Application
 
-Welcome to the **Todo Application**! This is a simple and beautiful Todo app built with HTML, CSS, and JavaScript. It allows you to add, edit, and delete tasks, with data persistence using the browser's local storage.
+Welcome to the **Todo Application**! This is a simple yet elegant Todo app built with **HTML**, **CSS**, and **JavaScript**. It allows you to add, edit, and delete tasks with custom popup dialogs that enhance user interaction. The app also uses the browser's **Local Storage** for data persistence, ensuring your tasks remain even after you close the browser.
 
-**[Todo Live Preview](https://hashimthepassionate.github.io/todo-application/)**
+🌟 **[Live Demo](https://hashimthepassionate.github.io/todo-application)**
 
 ## 📚 Table of Contents
 
@@ -10,261 +10,264 @@ Welcome to the **Todo Application**! This is a simple and beautiful Todo app bui
   - [📚 Table of Contents](#-table-of-contents)
   - [✨ Features](#-features)
   - [🚀 How to Use](#-how-to-use)
-  - [🧐 Line-by-Line Explanation](#-line-by-line-explanation)
+  - [🛠️ Installation](#️-installation)
+  - [🧐 Detailed Explanation](#-detailed-explanation)
     - [`index.html`](#indexhtml)
+      - [Explanation:](#explanation)
     - [`style.css`](#stylecss)
+      - [Explanation:](#explanation-1)
     - [`script.js`](#scriptjs)
-      - [Variable Declarations and Initializations](#variable-declarations-and-initializations)
-      - [Event Listeners](#event-listeners)
-      - [Functions](#functions)
-      - [Additional Notes](#additional-notes)
+      - [Explanation:](#explanation-2)
+  - [📷 Screenshots](#-screenshots)
+    - [Main Interface](#main-interface)
+    - [Add Todo Popup](#add-todo-popup)
+    - [Edit Todo Popup](#edit-todo-popup)
+    - [Delete Confirmation Popup](#delete-confirmation-popup)
+    - [Alert Popup](#alert-popup)
   - [🙏 Credits](#-credits)
+  - [📄 License](#-license)
 
 ## ✨ Features
 
-- Add new todos 📝
-- Edit existing todos ✏️
-- Delete todos ❌
-- Responsive design 📱
-- Smooth animations and transitions 🎨
-- Data persistence with Local Storage 💾
+- **Add New Todos** 📝
+- **Edit Existing Todos** ✏️
+- **Delete Todos with Confirmation** ❌
+- **Custom Themed Popup Dialogs** 🎨
+- **Persistent Data Storage with Local Storage** 💾
+- **Responsive and Modern Design** 📱
+- **Smooth Animations and Transitions** ✨
 
 ## 🚀 How to Use
 
-1. **Download or Clone** the repository to your local machine.
-2. Open the `index.html` file in your web browser.
-3. Click on the "**+ Add Todo**" button to add new tasks.
-4. Use the "**Edit**" and "**Delete**" buttons to manage your tasks.
+1. **Clone or Download** the repository to your local machine:
 
-Enjoy your organized task management! 🎉
+   ```bash
+   git clone https://github.com/HashimThePassionate/todo-application.git
+   ```
 
-## 🧐 Line-by-Line Explanation
+2. Navigate to the project directory:
+
+   ```bash
+   cd todo-application
+   ```
+
+3. Open the `index.html` file in your web browser:
+
+   ```bash
+   open index.html
+   ```
+
+   Or simply double-click on the `index.html` file.
+
+4. Start adding your tasks by clicking on the **Add Todo** button! 🎉
+
+## 🛠️ Installation
+
+No additional installations are required. The app is built using plain HTML, CSS, and JavaScript, and runs entirely in the browser.
+
+## 🧐 Detailed Explanation
+
+Let's dive into each file to understand how the app works.
 
 ### `index.html`
 
-Let's delve into the structure of the HTML file.
+This file contains the structure of the web page, including the layout and the elements that the user interacts with.
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-```
 
-- **Line 1**: Declares the document as an HTML5 document.
-- **Line 2**: Opens the `<html>` tag with the language attribute set to English.
-
-```html
 <head>
-    <meta charset="UTF-8">
-```
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-- **Line 3**: Opens the `<head>` section containing metadata and links.
-- **Line 4**: Sets the character encoding to UTF-8 for proper text rendering.
+    <!-- Title -->
+    <title>Todo Application</title>
 
-```html
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-```
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-- **Line 5**: Ensures responsive design on various devices by setting the viewport.
+    <!-- Poppins Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap"
+        rel="stylesheet"
+    />
 
-```html
-    <title>Todo App</title>
-```
+    <!-- Material Icons -->
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
 
-- **Line 6**: Sets the title of the webpage, which appears on the browser tab.
-
-```html
-    <link rel="stylesheet" href="style.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
 </head>
-```
 
-- **Line 7**: Links the external CSS file `style.css` for styling the webpage.
-- **Line 8**: Closes the `<head>` section.
-
-```html
 <body>
     <div class="container">
-```
-
-- **Line 9**: Opens the `<body>` where the visible content resides.
-- **Line 10**: Creates a `<div>` with class `container` to wrap the entire app content.
-
-```html
+        <!-- Header Section -->
         <header>
             <h1>Todo Application</h1>
-            <button id="add-todo-btn">+ Add Todo</button>
+            <button id="add-todo-btn">
+                <span class="material-symbols-outlined">add_circle</span> Add Todo
+            </button>
         </header>
-```
 
-- **Lines 11-14**: Defines the header containing the app title and the "Add Todo" button with an ID for JavaScript targeting.
-
-```html
+        <!-- Main Content -->
         <main>
             <ul id="todo-list"></ul>
         </main>
-```
 
-- **Lines 15-17**: Creates the main section with an unordered list to display todos. The list has an ID for JavaScript manipulation.
+        <!-- Add/Edit Todo Popup -->
+        <div class="popup" id="todo-popup">
+            <div class="popup-content">
+                <h2 id="popup-title">Add Todo</h2>
+                <input
+                    type="text"
+                    id="todo-input"
+                    placeholder="Please Enter Task ..."
+                />
+                <button id="save-todo-btn">Save</button>
+                <button id="close-popup-btn">Cancel</button>
+            </div>
+        </div>
 
-```html
-    </div>
-```
+        <!-- Alert Popup -->
+        <div class="popup" id="alert-popup">
+            <div class="popup-content">
+                <h2>Alert</h2>
+                <p>Please enter a todo</p>
+                <button id="close-alert-btn">OK</button>
+            </div>
+        </div>
 
-- **Line 18**: Closes the `container` `<div>`.
-
-```html
-    <!-- Popup Form for Adding/Editing Todo -->
-    <div class="popup" id="todo-popup">
-        <div class="popup-content">
-```
-
-- **Lines 19-21**: Adds a hidden popup modal for adding or editing todos. The modal has an ID for toggling visibility.
-
-```html
-            <h2 id="popup-title">Add Todo</h2>
-            <input type="text" id="todo-input" placeholder="Enter your task...">
-```
-
-- **Lines 22-23**: The popup contains a title and an input field for the todo text.
-
-```html
-            <button id="save-todo-btn">Save</button>
-            <button id="close-popup-btn">Cancel</button>
+        <!-- Delete Confirmation Popup -->
+        <div class="popup" id="delete-popup">
+            <div class="popup-content">
+                <h2>Are you sure you want to delete this todo?</h2>
+                <button id="confirm-delete-btn">Yes</button>
+                <button id="cancel-delete-btn">No</button>
+            </div>
         </div>
     </div>
-```
 
-- **Lines 24-27**: Includes "Save" and "Cancel" buttons with IDs for event handling, and closes the popup elements.
-
-```html
+    <!-- External JavaScript -->
     <script src="script.js"></script>
 </body>
+
 </html>
 ```
 
-- **Line 28**: Links the external JavaScript file `script.js` to add functionality.
-- **Lines 29-30**: Closes the `<body>` and `<html>` tags, ending the document.
+#### Explanation:
 
----
+- **Header Section**: Contains the app title and the **Add Todo** button with an icon.
+- **Main Content**: An unordered list (`<ul>`) with the `id="todo-list"` where the todos will be displayed dynamically.
+- **Add/Edit Todo Popup**: A modal popup that appears when adding a new todo or editing an existing one.
+- **Alert Popup**: Custom alert modal that appears when the user tries to save an empty todo.
+- **Delete Confirmation Popup**: A confirmation modal that appears before deleting a todo.
 
 ### `style.css`
 
-Let's explore how the CSS styles enhance the appearance of the app.
+This file styles the app, making it visually appealing and responsive.
 
 ```css
-/* styles.css */
-body, html {
+/* Reset and Base Styles */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f4f7fc;
+    background-color: #d9e6fc;
     display: flex;
+    height: 100vh;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
-```
 
-- **Lines 1-9**: Resets default margins and paddings, sets a clean font, applies a light background color, and centers the content both vertically and horizontally.
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-```css
 .container {
     width: 600px;
-    background: #fff;
-    border-radius: 15px;
+    background-color: #fff;
     padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
-```
 
-- **Lines 11-17**: Styles the main container with a fixed width, white background, rounded corners, padding, and a subtle shadow for depth.
-
-```css
 h1 {
     font-size: 36px;
     color: #0b57d0;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
-```
 
-- **Lines 19-22**: Styles the main heading with a larger font size and a blue color to make it stand out.
-
-```css
+/* Add Todo Button Styles */
 #add-todo-btn {
-    padding: 12px 30px;
-    background-color: #0b57d0;
-    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 16px;
     border: none;
+    background-color: #0b57d0;
+    color: white;
+    border-radius: 25px;
     cursor: pointer;
-    border-radius: 30px;
-    font-size: 16px;
-    transition: background 0.3s;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-size: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
-```
 
-- **Lines 24-34**: Styles the "Add Todo" button with padding, background color, white text, rounded edges, and a hover effect with transition.
+#add-todo-btn .material-symbols-outlined {
+    font-size: 1.2em;
+}
 
-```css
 #add-todo-btn:hover {
-    background-color: #084298;
+    background-color: #084a9c;
 }
-```
 
-- **Lines 36-38**: Changes the button's background color on hover for interactivity.
-
-```css
 main {
     margin-top: 30px;
 }
-```
 
-- **Lines 40-42**: Adds spacing above the main content area.
-
-```css
+/* Todo List Styles */
 #todo-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-```
 
-- **Lines 44-48**: Removes default list styles and spacing from the unordered list.
-
-```css
 #todo-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: #eee9e9;
+    border: 2px solid #084a9c;
     margin-bottom: 15px;
     border-radius: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s;
 }
-```
 
-- **Lines 50-59**: Styles each todo item as a flex container, adds padding, background color, spacing between items, rounded corners, and a smooth hover transition.
-
-```css
 #todo-list li:hover {
     transform: translateY(-5px);
 }
-```
 
-- **Lines 61-64**: Adds a lifting effect on hover to indicate interactivity.
-
-```css
-.todo-text {
-    font-size: 18px;
-    color: #333;
+#todo-list li span {
+    font-size: 20px;
+    color: #084a9c;
     flex: 1;
+    text-align: left;
 }
-```
 
-- **Lines 66-70**: Styles the todo text with a readable font size and ensures it takes up available space.
-
-```css
 #todo-list li button {
     padding: 10px 15px;
     border: none;
@@ -275,44 +278,24 @@ main {
     transition: background 0.3s;
     margin-left: 10px;
 }
-```
 
-- **Lines 72-81**: Styles the "Edit" and "Delete" buttons inside each todo item with padding, no border, rounded edges, and hover effects.
-
-```css
 .edit-btn {
     background-color: #f1c40f;
 }
-```
 
-- **Lines 83-85**: Sets the background color for the "Edit" button.
-
-```css
 .delete-btn {
     background-color: #e74c3c;
 }
-```
 
-- **Lines 87-89**: Sets the background color for the "Delete" button.
-
-```css
 .edit-btn:hover {
     background-color: #f39c12;
 }
-```
 
-- **Lines 91-94**: Changes the "Edit" button's background color on hover.
-
-```css
 .delete-btn:hover {
     background-color: #c0392b;
 }
-```
 
-- **Lines 96-99**: Changes the "Delete" button's background color on hover.
-
-```css
-/* Popup Styling */
+/* Popup Styles */
 .popup {
     position: fixed;
     top: 0;
@@ -324,58 +307,82 @@ main {
     justify-content: center;
     align-items: center;
 }
-```
 
-- **Lines 101-111**: Styles the popup overlay to cover the entire viewport with a semi-transparent background. Initially hidden (`display: none`).
-
-```css
 .popup-content {
     background: #fff;
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 20px;
     width: 90%;
     max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     position: relative;
     animation: fadeIn 0.3s ease;
 }
-```
 
-- **Lines 113-122**: Styles the popup content with padding, rounded corners, maximum width, and a fade-in animation.
-
-```css
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-```
 
-- **Lines 124-127**: Defines the `fadeIn` animation for a smooth appearance effect.
-
-```css
 #popup-title {
     font-size: 24px;
-    color: #333;
+    color: #084298;
     margin-bottom: 20px;
 }
-```
 
-- **Lines 129-133**: Styles the popup title with a larger font size and spacing.
-
-```css
 #todo-input {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #084298;
     border-radius: 5px;
     margin-bottom: 15px;
     font-size: 16px;
+    color: #084298;
 }
-```
 
-- **Lines 135-142**: Styles the input field within the popup for better usability.
+#todo-input::placeholder {
+    color: #084298;
+}
 
-```css
+#todo-input:focus {
+    outline: 2px solid #084298;
+    border: 1px solid #084298;
+}
+
+/* Alert Popup Styles */
+#alert-popup .popup-content h2 {
+    font-size: 24px;
+    color: #084298;
+    margin-bottom: 10px;
+}
+
+#alert-popup .popup-content p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#close-alert-btn {
+    background-color: #0b57d0;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#close-alert-btn:hover {
+    background-color: #084a9c;
+}
+
+/* General Button Styles */
 button {
     cursor: pointer;
     padding: 10px 20px;
@@ -384,158 +391,149 @@ button {
     font-size: 14px;
     transition: background 0.3s;
 }
-```
 
-- **Lines 144-151**: General styles for buttons to ensure consistent appearance and interactivity.
-
-```css
 button:hover {
     opacity: 0.9;
 }
-```
 
-- **Lines 153-156**: Slightly reduces opacity on hover for visual feedback.
-
-```css
 #save-todo-btn {
     background-color: #0b57d0;
     color: #fff;
     margin-right: 10px;
 }
-```
 
-- **Lines 158-162**: Styles the "Save" button with a blue background and white text.
-
-```css
 #close-popup-btn {
-    background-color: #ccc;
-    color: #333;
+    background-color: #f83434;
+    color: #fff;
 }
-```
 
-- **Lines 164-167**: Styles the "Cancel" button with a grey background.
-
-```css
 .popup-content button {
-    width: 48%;
+    width: 25%;
+}
+
+/* Delete Confirmation Popup Styles */
+#delete-popup .popup-content h2 {
+    font-size: 24px;
+    color: #084298;
+    margin-bottom: 20px;
+}
+
+#delete-popup .popup-content button {
+    width: 45%;
+    margin: 5px;
+}
+
+#confirm-delete-btn {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+#cancel-delete-btn {
+    background-color: #95a5a6;
+    color: #fff;
 }
 ```
 
-- **Lines 169-172**: Sets the width of the buttons inside the popup to align them side by side.
+#### Explanation:
 
----
+- **Reset Styles**: Removes default margins and paddings for all elements and sets the box-sizing to `border-box` for consistent sizing.
+- **Body Styling**:
+  - **Background Color**: A light blue `#d9e6fc` to give a calming effect.
+  - **Font**: Uses 'Poppins' for a modern look.
+  - **Centering**: Flexbox is used to center the container both vertically and horizontally.
+- **Header Styling**:
+  - Centers the heading and the **Add Todo** button.
+- **Container Styling**:
+  - Fixed width with padding and rounded corners.
+  - Box-shadow adds depth to the container.
+- **Add Todo Button**:
+  - Flex display to align the icon and text.
+  - Rounded edges and a shadow effect.
+  - Changes background color on hover for interactivity.
+- **Todo List Styling**:
+  - Removes list styles.
+  - Each todo item has a border, padding, and transitions for hover effects.
+  - **Edit** and **Delete** buttons have distinct colors and hover effects.
+- **Popup Styling**:
+  - The popup overlay covers the entire viewport with a semi-transparent background.
+  - Popups are initially hidden (`display: none`) and appear centered when displayed.
+  - Animations are used for a smooth appearance (`fadeIn` keyframes).
+- **Alert and Delete Confirmation Popups**:
+  - Styled similarly to maintain consistency.
+  - Buttons are styled to match the app's theme.
 
 ### `script.js`
 
-Let's dive deeper into the JavaScript code to understand how it makes the app interactive and functional.
-
-#### Variable Declarations and Initializations
+This file contains the JavaScript code that makes the app interactive.
 
 ```javascript
-let getById = (id) => document.getElementById(id);
-```
+// Helper function to get elements by ID
+let id = (id) => document.getElementById(id);
 
-- **Line 1**: Defines a helper arrow function `getById` that simplifies the process of selecting DOM elements by their `id`.
+// DOM Elements
+let addtodobtn = id('add-todo-btn');
+let todopopup = id('todo-popup');
+let savetodo = id('save-todo-btn');
+let closepopupbtn = id('close-popup-btn');
+let todoinput = id('todo-input');
+let todolist = id('todo-list');
 
-```javascript
-let addTodoBtn = getById('add-todo-btn');
-let todoPopup = getById('todo-popup');
-let saveTodoBtn = getById('save-todo-btn');
-let closePopupBtn = getById('close-popup-btn');
-let todoInput = getById('todo-input');
-let todoList = getById('todo-list');
-```
+let deletePopup = id('delete-popup');
+let confirmDeleteBtn = id('confirm-delete-btn');
+let cancelDeleteBtn = id('cancel-delete-btn');
+let deleteIndex = null;
 
-- **Lines 2-7**: Uses the `getById` function to select and store references to various DOM elements:
-  - `addTodoBtn`: The "+ Add Todo" button.
-  - `todoPopup`: The popup modal for adding/editing todos.
-  - `saveTodoBtn`: The "Save" button in the popup.
-  - `closePopupBtn`: The "Cancel" button in the popup.
-  - `todoInput`: The input field in the popup.
-  - `todoList`: The unordered list where todos are displayed.
+let alertPopup = id('alert-popup');
+let closeAlertBtn = id('close-alert-btn');
 
-```javascript
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
-let editIndex = null;
-```
+let editindex = null;
 
-- **Line 8**: Initializes the `todos` array by attempting to parse any existing todos from `localStorage`. If none are found, it defaults to an empty array.
-- **Line 9**: Initializes `editIndex` to `null`, which will later be used to track the index of the todo being edited.
-
-#### Event Listeners
-
-```javascript
-// Show popup
-addTodoBtn.addEventListener('click', () => {
-    todoPopup.style.display = 'flex';
-    todoInput.value = '';
-    editIndex = null;
+// Show Add Todo Popup
+addtodobtn.addEventListener('click', () => {
+    todopopup.style.display = 'flex';
+    todoinput.value = '';
+    editindex = null;
 });
-```
 
-- **Lines 11-15**: Adds a click event listener to the "Add Todo" button:
-  - **When clicked**:
-    - Displays the popup modal by setting its `display` style to `flex`.
-    - Clears any text from the input field to ensure it's empty for new entries.
-    - Resets `editIndex` to `null` to indicate that we're adding a new todo, not editing.
-
-```javascript
-// Close popup
-closePopupBtn.addEventListener('click', () => {
-    todoPopup.style.display = 'none';
+// Close Add/Edit Popup
+closepopupbtn.addEventListener('click', () => {
+    todopopup.style.display = 'none';
 });
-```
 
-- **Lines 17-20**: Adds a click event listener to the "Cancel" button in the popup:
-  - **When clicked**:
-    - Hides the popup modal by setting its `display` style to `none`.
-
-```javascript
 // Save Todo
-saveTodoBtn.addEventListener('click', () => {
-    let todoText = todoInput.value.trim();
-    if (todoText) {
-        if (editIndex !== null) {
+savetodo.addEventListener('click', () => {
+    let todotext = todoinput.value.trim();
+    if (todotext) {
+        if (editindex !== null) {
             // Update existing todo
-            todos[editIndex] = todoText;
+            todos[editindex] = todotext;
         } else {
             // Add new todo
-            todos.push(todoText);
+            todos.push(todotext);
         }
         // Save updated todos to localStorage
         localStorage.setItem('todos', JSON.stringify(todos));
         // Refresh the displayed list
         renderTodos();
         // Close the popup
-        todoPopup.style.display = 'none';
+        todopopup.style.display = 'none';
     } else {
-        alert('Please enter a task.');
+        // Show the custom alert popup
+        alertPopup.style.display = 'flex';
     }
 });
-```
 
-- **Lines 22-39**: Adds a click event listener to the "Save" button in the popup:
-  - **When clicked**:
-    - Retrieves the text from the input field and trims any whitespace.
-    - Checks if the input is not empty:
-      - **If editing** (`editIndex` is not `null`):
-        - Updates the existing todo in the `todos` array at the specified `editIndex`.
-      - **If adding** (`editIndex` is `null`):
-        - Adds the new todo text to the `todos` array.
-    - Saves the updated `todos` array to `localStorage` to persist the data.
-    - Calls the `renderTodos()` function to update the displayed list.
-    - Closes the popup modal.
-  - **If input is empty**:
-    - Displays an alert prompting the user to enter a task.
+// Close Alert Popup
+closeAlertBtn.addEventListener('click', () => {
+    alertPopup.style.display = 'none';
+});
 
-#### Functions
-
-```javascript
 // Render Todos
 function renderTodos() {
-    todoList.innerHTML = ''; // Clear the existing list
+    todolist.innerHTML = '';
     todos.forEach((todo, index) => {
-        let li = document.createElement('li'); // Create a new list item
+        let li = document.createElement('li');
         li.innerHTML = `
             <span>${todo}</span>
             <div>
@@ -543,92 +541,105 @@ function renderTodos() {
                 <button class="delete-btn" onclick="deleteTodo(${index})">Delete</button>
             </div>
         `;
-        todoList.appendChild(li); // Add the list item to the todo list
+        todolist.appendChild(li);
     });
 }
-```
 
-- **Lines 41-52**: Defines the `renderTodos()` function responsible for displaying the todos on the page:
-  - **Clears** the current list by setting `todoList.innerHTML` to an empty string.
-  - **Iterates** over each todo in the `todos` array using `forEach`:
-    - **Creates** a new `<li>` element for each todo.
-    - **Sets** the inner HTML of the `<li>`:
-      - `<span>` displays the todo text.
-      - A `<div>` contains "Edit" and "Delete" buttons with `onclick` handlers that pass the current index.
-    - **Appends** the `<li>` to the `todoList` in the DOM.
-
-```javascript
 // Edit Todo
-window.editTodo = function (index) {
-    todoInput.value = todos[index]; // Populate the input with the existing todo text
-    editIndex = index; // Set the editIndex to the current todo's index
-    todoPopup.style.display = 'flex'; // Show the popup for editing
+window.editTodo = function (i) {
+    todoinput.value = todos[i];
+    editindex = i;
+    todopopup.style.display = 'flex';
 };
-```
 
-- **Lines 54-59**: Defines the `editTodo()` function, attached to the global `window` object to be accessible from the inline `onclick` handler:
-  - **Parameters**:
-    - `index`: The index of the todo to edit.
-  - **Functionality**:
-    - Sets the `todoInput` value to the current todo text to allow editing.
-    - Updates `editIndex` with the provided index to keep track of which todo is being edited.
-    - Displays the popup modal for editing.
-
-```javascript
 // Delete Todo
 window.deleteTodo = function (index) {
-    if (confirm('Are you sure you want to delete this todo?')) {
-        todos.splice(index, 1); // Remove the todo from the array
-        localStorage.setItem('todos', JSON.stringify(todos)); // Update localStorage
-        renderTodos(); // Refresh the displayed list
-    }
+    deleteIndex = index;
+    deletePopup.style.display = 'flex';
 };
-```
 
-- **Lines 61-68**: Defines the `deleteTodo()` function, also attached to the `window` object:
-  - **Parameters**:
-    - `index`: The index of the todo to delete.
-  - **Functionality**:
-    - Prompts the user for confirmation before deleting.
-    - **If confirmed**:
-      - Removes the todo from the `todos` array using `splice`.
-      - Updates `localStorage` with the new array.
-      - Calls `renderTodos()` to update the displayed list.
-    - **If not confirmed**:
-      - No action is taken.
+// Confirm Delete
+confirmDeleteBtn.addEventListener('click', () => {
+    if (deleteIndex !== null) {
+        todos.splice(deleteIndex, 1);
+        localStorage.setItem('todos', JSON.stringify(todos));
+        renderTodos();
+        deletePopup.style.display = 'none';
+        deleteIndex = null;
+    }
+});
 
-```javascript
+// Cancel Delete
+cancelDeleteBtn.addEventListener('click', () => {
+    deletePopup.style.display = 'none';
+    deleteIndex = null;
+});
+
 // Initial Load
 renderTodos();
 ```
 
-- **Line 70**: Calls the `renderTodos()` function when the script first loads to display any existing todos from `localStorage`.
+#### Explanation:
 
-#### Additional Notes
-
+- **Helper Function**:
+  - `id(id)`: Simplifies getting DOM elements by ID.
+- **DOM Elements**:
+  - **Add Todo Elements**: Buttons and input fields for adding or editing todos.
+  - **Todo List**: The container where todos are displayed.
+  - **Delete Confirmation Elements**: Elements related to the delete confirmation popup.
+  - **Alert Popup Elements**: Elements related to the alert popup.
+- **Data Variables**:
+  - `todos`: An array to store todo items, initialized from `localStorage` or as an empty array.
+  - `editindex`: Keeps track of the index of the todo being edited.
+- **Event Listeners**:
+  - **Add Todo Button Click**: Displays the add/edit popup and resets input and edit index.
+  - **Close Add/Edit Popup**: Hides the add/edit popup.
+  - **Save Todo Button Click**: Saves a new or edited todo, validates input, and shows an alert popup if empty.
+  - **Close Alert Popup**: Hides the alert popup.
+  - **Confirm Delete**: Deletes the selected todo after confirmation.
+  - **Cancel Delete**: Cancels the delete operation and hides the delete popup.
+- **Functions**:
+  - **renderTodos()**: Renders the list of todos on the page.
+  - **editTodo()**: Populates the input field with the selected todo text and displays the popup for editing.
+  - **deleteTodo()**: Stores the index of the todo to be deleted and displays the delete confirmation popup.
 - **Data Persistence**:
-  - **Local Storage** is used to store the todos array as a JSON string, allowing the data to persist even after the browser is closed or refreshed.
-  - **JSON.parse()** and **JSON.stringify()** are used to convert between strings and JavaScript objects.
+  - Uses `localStorage` to save and retrieve the `todos` array, ensuring data persistence across sessions.
 
-- **Global Functions**:
-  - Functions like `editTodo` and `deleteTodo` are attached to the `window` object to make them accessible from the inline `onclick` attributes in the HTML generated by `renderTodos()`.
+## 📷 Screenshots
 
-- **Event Delegation**:
-  - Inline `onclick` handlers are used in the dynamically generated HTML. Alternatively, event delegation could be implemented for better practice.
+### Main Interface
 
-- **User Experience Enhancements**:
-  - **Input Validation**: Ensures that empty todos cannot be added.
-  - **Confirmation Prompt**: Adds a confirmation step before deleting a todo to prevent accidental deletions.
+![Main Interface](images/main-interface.png) <!-- Replace with your actual screenshot -->
 
-- **Possible Improvements**:
-  - **Use Event Listeners**: Attach event listeners to buttons instead of inline `onclick` handlers for better separation of concerns.
-  - **Modular Code**: Break the code into smaller functions or modules for maintainability.
-  - **Error Handling**: Add more robust error handling for edge cases.
+### Add Todo Popup
 
----
+![Add Todo Popup](images/add-todo-popup.png) <!-- Replace with your actual screenshot -->
+
+### Edit Todo Popup
+
+![Edit Todo Popup](images/edit-todo-popup.png) <!-- Replace with your actual screenshot -->
+
+### Delete Confirmation Popup
+
+![Delete Confirmation Popup](images/delete-confirmation-popup.png) <!-- Replace with your actual screenshot -->
+
+### Alert Popup
+
+![Alert Popup](images/alert-popup.png) <!-- Replace with your actual screenshot -->
 
 ## 🙏 Credits
 
-- **Author**: [Muhammad Hashim](#)
-- **Icons**: Emojis from [Emojipedia](https://emojipedia.org/)
-- **Fonts**: 'Poppins' from [Google Fonts](https://fonts.google.com/)
+- **Author**: [Muhammad Hashim](https://github.com/hashimthepassionate)
+- **Fonts**:
+  - 'Poppins' from [Google Fonts](https://fonts.google.com/)
+  - 'Material Symbols Outlined' from [Google Fonts](https://fonts.google.com/icons)
+- **Icons**:
+  - Material Symbols provided by Google.
+- **Inspiration**:
+  - The desire to create a simple yet functional Todo app with a clean user interface.
+- **Special Thanks**:
+  - To all open-source contributors who inspire us to build and share.
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
