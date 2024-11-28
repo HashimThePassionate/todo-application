@@ -1,5 +1,4 @@
 let id = (id) => document.getElementById(id);
-
 let addtodobtn = id('add-todo-btn');
 let todopopup = id('todo-popup');
 let savetodo = id('save-todo-btn');
@@ -25,7 +24,7 @@ addtodobtn.addEventListener('click', () => {
 });
 
 closepopupbtn.addEventListener('click', () => {
-    todopopup.style.display = 'none';
+    fadeOutPopup(todopopup);
 });
 
 savetodo.addEventListener('click', () => {
@@ -38,7 +37,7 @@ savetodo.addEventListener('click', () => {
         }
         localStorage.setItem('todos', JSON.stringify(todos));
         renderTodos();
-        todopopup.style.display = 'none';
+        fadeOutPopup(todopopup);
     } else {
         // Show the custom alert popup
         alertPopup.style.display = 'flex';
@@ -47,12 +46,18 @@ savetodo.addEventListener('click', () => {
 
 // Close the alert popup
 closeAlertBtn.addEventListener('click', () => {
-    alertPopup.style.display = 'none';
+    fadeOutPopup(alertPopup);
 });
 
 // Render Todos
 function renderTodos() {
     todolist.innerHTML = '';
+    if (todos.length > 0) {
+        todolist.style.display = 'block'; // Show the list if there are items
+    } else {
+        todolist.style.display = 'none'; // Hide the list if it's empty
+    }
+
     todos.forEach((todo, index) => {
         let li = document.createElement('li');
         li.innerHTML = `
@@ -82,15 +87,23 @@ confirmDeleteBtn.addEventListener('click', () => {
         todos.splice(deleteIndex, 1);
         localStorage.setItem('todos', JSON.stringify(todos));
         renderTodos();
-        deletePopup.style.display = 'none';
+        fadeOutPopup(deletePopup);
         deleteIndex = null;
     }
 });
 
 cancelDeleteBtn.addEventListener('click', () => {
-    deletePopup.style.display = 'none';
-    deleteIndex = null;
+    fadeOutPopup(deletePopup);
 });
+
+// Function to fade out the popup
+function fadeOutPopup(popup) {
+    popup.classList.add('fade-out');
+    popup.addEventListener('animationend', () => {
+        popup.style.display = 'none';
+        popup.classList.remove('fade-out'); // Remove the class so it can be reused
+    }, { once: true });
+}
 
 // Initial Load
 renderTodos();
