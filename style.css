@@ -1,192 +1,242 @@
-*{
+/* Resetting default margins, padding, and setting global box-sizing */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body{
-    font-family: 'Poppins';
-    background-color: #d9e6fc;
-    display: flex;
+    --theme-color: #226de6; /* Primary theme color */
+    --theme-color-dark: #084a9c; /* Darker shade for hover effects */
+    --white: #fff; /* White color */
+    --bg-color: #d9e6fc; /* Background color for body */
+    --edit-btn: #f1c40f; /* Edit button color */
+    --delete-btn: #e74c3c; /* Delete button color */
+    --edit-btn-hover: #f39c12; /* Hover color for edit button */
+    --delete-btn-hover: #c0392b; /* Hover color for delete button */
+}
+
+/* Body Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
     height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
-  }
-  header {
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* Center the button and heading horizontally */
-      justify-content: center;
-  }
-  
-  .container{
-      width: 600px;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      text-align: center;
-  }
-  h1{
-      font-size: 36px;
-      color:#0b57d0;
-      margin-bottom: 10px;
-  }
-  #add-todo-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px; /* Adjust space between icon and text */
-      padding: 8px 16px;
-      border: none;
-      background-color: #0b57d0; /* Your theme color */
-      color: white;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 1rem; /* Adjust font size if needed */
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-  }
-  
-  #add-todo-btn .material-symbols-outlined {
-      font-size: 1.2em; /* Adjust icon size if needed */
-      display: flex;
-      align-items: center;
-  }
-  #add-todo-btn:hover {
-      background-color: #084a9c; /* Slightly darker shade on hover */
-  }
-  
-  
-  main {
-      margin-top: 30px;
-  }
-  
-  #todo-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-  }
-  
-  #todo-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      border: 2px solid #084a9c;
-      margin-bottom: 15px;
-      border-radius: 15px;
-      transition: transform 0.3s;
-  }
-  #todo-list li:hover {
-      transform: translateY(-5px);
-  }
-  
-  #todo-list li span {
-      font-size: 20px;
-      color: #084a9c;
-      flex: 1;
-      text-align: left;
-  }
-  #todo-list li button {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 20px;
-      color: #fff;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.3s;
-      margin-left: 10px;
-  }
-  .edit-btn {
-      background-color: #f1c40f;
-  }
-  .delete-btn {
-      background-color: #e74c3c;
-  }
-  .edit-btn:hover {
-      background-color: #f39c12;
-  }
-  .delete-btn:hover {
-      background-color: #c0392b;
-  }
-  
-  /* Popup Styling */
-  .popup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-  }
-  .popup-content {
-      background: #fff;
-      padding: 30px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 400px;
-      position: relative;
-      animation: fadeIn 0.3s ease;
-  }
-  @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-  }
-  
-  #popup-title {
-      font-size: 24px;
-      color: #084298;
-      margin-bottom: 20px;
-  }
-  #todo-input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #084298;
-      border-radius: 5px;
-      margin-bottom: 15px;
-      font-size: 16px;
-      color: #084298;;
-  }
-  #todo-input::placeholder {
-      color: #084298;
-  }
-  #todo-input:focus {
-      outline: 2px solid #084298; /* Adds a solid outline on focus */
-      border: 1px solid #084298; /* Ensures the border color remains consistent */
-  }
+}
 
+/* Main Container Styling */
+.container {
+    width: 600px;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    color: var(--theme-color);
+    text-transform: capitalize;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+}
+
+/* Add Todo Button Styling */
+#add-todo-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 16px;
+    border: none;
+    background-color: var(--theme-color);
+    color: var(--white);
+    border-radius: 25px;
+    font-size: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#add-todo-btn:hover {
+    background-color: var(--theme-color-dark);
+}
+
+/* Main Section */
+main {
+    margin-top: 30px;
+}
+
+/* Todo List Styling */
+#todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#todo-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid var(--theme-color);
+    margin-bottom: 15px;
+    border-radius: 15px;
+    background-color: var(--white);
+    transition: transform 0.3s ease;
+}
+#todo-list li:hover {
+    transform: scale(1.02);
+}
+#todo-list li span {
+    font-size: 20px;
+    color: var(--theme-color);
+    flex: 1;
+    text-align: left;
+}
+#todo-list li button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    color: var(--white);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-left: 10px;
+}
+
+/* Edit and Delete Button Styling */
+.edit-btn {
+    background-color: var(--edit-btn);
+}
+.edit-btn:hover {
+    background-color: var(--edit-btn-hover);
+}
+.delete-btn {
+    background-color: var(--delete-btn);
+}
+.delete-btn:hover {
+    background-color: var(--delete-btn-hover);
+}
+
+/* Popup General Styling */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Popup Content Styling */
+.popup-content {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: fadeIn 0.5s ease; /* Animation for showing popup */
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Delete Confirmation Popup Styling */
+#delete-popup .popup-content h2 {
+    font-size: 24px;
+    color: var(--theme-color);
+    margin-bottom: 10px;
+}
+#delete-popup .popup-content button {
+    width: 45%;
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+#confirm-delete-btn {
+    background-color: var(--delete-btn);
+    color: var(--white);
+}
+#confirm-delete-btn:hover {
+    background-color: var(--delete-btn-hover);
+}
+#cancel-delete-btn {
+    background-color: var(--theme-color);
+    color: var(--white);
+}
+#cancel-delete-btn:hover {
+    background-color: var(--theme-color-dark);
+}
 
 /* Alert Popup Styles */
 #alert-popup .popup-content h2 {
     font-size: 24px;
-    color: #084298;
+    color: var(--theme-color-dark);
     margin-bottom: 10px;
 }
-
 #alert-popup .popup-content p {
     font-size: 16px;
     color: #333;
     margin-bottom: 20px;
 }
-
 #close-alert-btn {
-    background-color: #0b57d0;
-    color: #fff;
+    background-color: var(--theme-color);
+    color: var(--white);
     padding: 10px 20px;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     transition: background 0.3s;
 }
-
 #close-alert-btn:hover {
-    background-color: #084a9c;
+    background-color: var(--theme-color-dark);
 }
 
+/* Input Field Styling */
+#todo-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--theme-color-dark);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: var(--theme-color-dark);
+}
+#todo-input::placeholder {
+    color: var(--theme-color-dark);
+}
+#todo-input:focus {
+    outline: 2px solid var(--theme-color-dark);
+}
 
+/* General Button Styling */
 button {
     cursor: pointer;
     padding: 10px 20px;
@@ -199,80 +249,48 @@ button:hover {
     opacity: 0.9;
 }
 
+/* Specific Button Styling */
 #save-todo-btn {
-    background-color: #0b57d0;
-    color: #fff;
+    background-color: var(--theme-color);
+    color: var(--white);
     margin-right: 10px;
 }
 #close-popup-btn {
-    background-color: #f83434;
-    color: #fff;
-}
-.popup-content button {
-    width: 25%;
+    background-color: var(--delete-btn);
+    color: var(--white);
 }
 
-/* Delete Confirmation Popup Styles */
-#delete-popup .popup-content h2 {
-    font-size: 24px;
-    color: #084298;
-    margin-bottom: 20px;
-}
-
-#delete-popup .popup-content button {
-    width: 45%;
-    margin: 5px;
-}
-
-#confirm-delete-btn {
-    background-color: #e74c3c;
-    color: #fff;
-}
-
-#cancel-delete-btn {
-    background-color: #95a5a6;
-    color: #fff;
-}
-
-/* Responsive Styles */
+/* Responsive Styling for Smaller Screens */
 @media (max-width: 600px) {
     h1 {
         font-size: 28px;
     }
-
     #add-todo-btn {
         font-size: 0.9rem;
         padding: 8px 12px;
     }
-
     #todo-list li {
         flex-direction: column;
         align-items: center;
     }
-
     #todo-list li button {
         flex: 1 1 100%;
         margin-left: 0;
     }
-
-    #todo-list li .todo-text,
     #todo-list li span {
-        flex: 1 1 100%;
         margin-bottom: 10px;
         font-weight: 500;
         text-transform: uppercase;
     }
-     .edit-btn {
-      margin-bottom: 10px;
-  }
+    .edit-btn {
+        margin-bottom: 10px;
+    }
     .popup-content {
         padding: 20px;
     }
-
     button {
         width: 100%;
     }
-
     .popup-content button {
         width: 100%;
         margin: 5px 0;
