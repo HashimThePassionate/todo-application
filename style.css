@@ -143,6 +143,7 @@ main {
     background-color: var(--white);
     padding: 30px;
     border-radius: 20px;
+    color: var(--theme-color);
     width: 90%;
     max-width: 500px;
     position: relative;
