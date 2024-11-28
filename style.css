@@ -165,6 +165,10 @@ main {
         opacity: 0;
     }
 }
+/* Fade-out class */
+.fade-out {
+    animation: fadeOut 0.5s ease;
+}
 
 /* Delete Confirmation Popup Styling */
 #delete-popup .popup-content h2 {
